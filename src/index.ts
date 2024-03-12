@@ -1,9 +1,10 @@
 /**
  * @package prettier-zones
  * @author methamphetqmine
+ * @version 1.0.0
  */
 
-import { Workspace, CollectionService, RunService, Players } from "@rbxts/services";
+import { Workspace, CollectionService, Players } from "@rbxts/services";
 import { Trove } from "@rbxts/trove";
 import { Signal } from "@rbxts/beacon";
 
@@ -14,6 +15,7 @@ interface Options {
 
 export class Zone {
 	private Objects: Array<Instance> = [];
+	private lastQuery: Array<Player> = [];
 	private Options: Options = { Tag: "ZONE_OBJECT", queryTime: 0.25 };
 	private overlapParams: OverlapParams = new OverlapParams();
 	private Maid: Trove = new Trove();
@@ -36,10 +38,12 @@ export class Zone {
 		this.Maid.connect(this.TagAdded, (Object: BasePart) => {
 			while (Object.Parent) {
 				Workspace.GetPartsInPart(Object, this.overlapParams).forEach((Part: BasePart) => {
-					if (Part.FindFirstAncestorOfClass("Model")?.FindFirstChildOfClass("Humanoid")) {
-						this.PlayerEntered.Fire(
-							Players.GetPlayerFromCharacter(Part.FindFirstAncestorOfClass("Model")) as Player,
-						);
+					const Ancestor = Part.FindFirstAncestorOfClass("Model");
+					const Humanoid = Ancestor?.FindFirstChildOfClass("Humanoid");
+					const Player = Humanoid && Players.GetPlayerFromCharacter(Ancestor);
+
+					if (Player !== undefined && !this.lastQuery.includes(Player)) {
+						this.PlayerEntered.Fire(Player);
 					}
 				});
 
