@@ -1,5 +1,5 @@
 /**
- * @package zone
+ * @package prettier-zones
  * @author methamphetqmine
  */
 
