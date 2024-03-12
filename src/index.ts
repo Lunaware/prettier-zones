@@ -13,6 +13,9 @@ interface Options {
 	queryTime?: number;
 }
 
+/**
+ * Represents a zone in the game world.
+ */
 export class Zone {
 	private Objects: Array<Instance> = [];
 	private lastQuery: Array<Player> = [];
@@ -20,10 +23,27 @@ export class Zone {
 	private overlapParams: OverlapParams = new OverlapParams();
 	private Maid: Trove = new Trove();
 
+	/**
+	 * Signal that is fired when a tag is added to a part within the zone.
+	 */
 	public tagAdded: Signal<BasePart> = new Signal();
+
+	/**
+	 * Signal that is fired when a player enters the zone.
+	 */
 	public playerEntered: Signal<Player> = new Signal();
+
+	/**
+	 * Signal that is fired when a player exits the zone.
+	 */
 	public playerExited: Signal<Player> = new Signal();
 
+	/**
+	 * Creates a new Zone instance.
+	 * @param Options - The options for the zone.
+	 * @param Options.Tag - The tag to use for identifying parts within the zone.
+	 * @param Options.queryTime - The time interval between each query for players in the zone.
+	 */
 	constructor(Options: { Tag: string; queryTime: number }) {
 		assert(typeOf(Options) === "table", "Expected table for argument #1, got nil.");
 		assert(typeOf(Options.Tag) === "string", "Options.Tag is not a valid string.");
@@ -76,6 +96,10 @@ export class Zone {
 		});
 	}
 
+	/**
+	 * Destroys the Zone instance.
+	 * @param destroyZones - Whether to destroy the parts within the zone as well.
+	 */
 	Destroy(destroyZones?: boolean): void {
 		this.Maid.destroy();
 
