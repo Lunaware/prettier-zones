@@ -1,7 +1,8 @@
+
 {
   "name": "@rbxts/prettier-zones",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "This project includes a `Zone` class for managing zones in a Roblox game. The class provides several features to handle interactions between players and zones.",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
@@ -9,8 +10,8 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Lunaware",
+  "license": "MIT",
   "types": "out/index.d.ts",
   "files": [
     "out",
@@ -34,5 +35,9 @@
     "prettier": "^3.2.5",
     "roblox-ts": "^2.3.0",
     "typescript": "^5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "prettier-zones"
   }
 }
