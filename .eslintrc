@@ -23,5 +23,6 @@
 	],
 	"rules": {
 		"prettier/prettier": "warn"
-	}
+	},
+	"endOfLine": "off"
 }
