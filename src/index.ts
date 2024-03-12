@@ -24,7 +24,7 @@ export class Zone {
 	private Maid: Trove = new Trove();
 
 	/**
-	 * Signal that is fired when a tag is added to a part within the zone.
+	 * Signal that is fired when the zone tag is added to a part.
 	 */
 	public tagAdded: Signal<BasePart> = new Signal();
 
