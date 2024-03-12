@@ -1,4 +1,4 @@
-# Prettier Zone
+# Prettier Zones
 
 This project includes a `Zone` class for managing zones in a Roblox game. The class provides several features to handle interactions between players and zones.
 
