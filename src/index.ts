@@ -74,7 +74,7 @@ export class Zone {
 					if (!thisQuery.includes(Player)) {
 						this.playerExited.Fire(Player);
 					}
-				});
+				}); 
 
 				this.lastQuery = thisQuery;
 				task.wait(this.Options.queryTime);
